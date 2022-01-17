@@ -1,0 +1,36 @@
+{
+    "details": "Generated for daap19 at 2022-01-17 07:09:35.",
+    "key": "d20aef57c05ad57c4004d1ca6eecc173",
+    "summary": {
+        "questions": 11,
+        "points": 13,
+        "pass": 10.0,
+        "passdistinct": 13.0
+    },
+    "points": {
+        "1.1": 1,
+        "1.2": 1,
+        "1.3": 1,
+        "1.4": 1,
+        "1.5": 1,
+        "1.6": 1,
+        "1.7": 1,
+        "1.8": 1,
+        "2.1": 1,
+        "2.2": 1,
+        "3.1": 3
+    },
+    "answers": {
+        "1.1": "My cat's name is Perrin and has green eyes.",
+        "1.2": 6,
+        "1.3": "My cat's name is Perrin, has green eyes and 6 lives left to live.",
+        "1.4": "Perrin has 4 paws.",
+        "1.5": "Perrin has 2 paws but cats have 4 paws.",
+        "1.6": "My cat's name is Perrin, has green eyes and 6 lives left to live. My cat's name is Misha, has green eyes and -1 lives left to live.",
+        "1.7": "35-02-33",
+        "1.8": 126153,
+        "2.1": 235900,
+        "2.2": "31-44-43",
+        "3.1": false
+    }
+}
