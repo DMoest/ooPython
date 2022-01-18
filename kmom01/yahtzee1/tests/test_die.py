@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# Module imports
+"""
+Test module for instances of class Die.
+"""
 import unittest
 from src.die import Die
 
@@ -50,7 +52,7 @@ class TestDie(unittest.TestCase):
         self.assertIsInstance(self.die, Die)
 
 
-    def test_die_roll_value(self):
+    def test_die_roll_value_type(self):
         """
         Test die roll value type
         """
