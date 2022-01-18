@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""
+Die class module.
+"""
 import random
 
 
@@ -45,19 +48,22 @@ class Die():
         value = self.get_value()
 
         if value == 1:
-            return "one"
+            output_string = "one"
         elif value == 2:
-            return "two"
+            output_string = "two"
         elif value == 3:
-            return "three"
+            output_string = "three"
         elif value == 4:
-            return "four"
+            output_string = "four"
         elif value == 5:
-            return "five"
+            output_string = "five"
         elif value == 6:
-            return "six"
-        elif value == 0:
-            return "No dice have been rolled yet... "
+            output_string = "six"
+        else:
+            output_string = "No dice have been rolled yet... "
+
+        return output_string
+
 
 
     def get_value(self):
