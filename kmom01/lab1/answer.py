@@ -68,7 +68,7 @@ dbwebb.ready_to_begin()
 
 
 
-cat1 = Cat("Perrin", "green");
+cat1 = Cat("Perrin", "green")
 outputString = "My cat's name is {} and has {} eyes."
 
 ANSWER = outputString.format(cat1.name, cat1.eye_color)
@@ -94,9 +94,9 @@ dbwebb.assert_equal("1.1", ANSWER, False)
 
 
 
-cat1.setLivesLeft(6)
+cat1.set_lives_left(6)
 
-ANSWER = cat1.getLivesLeft()
+ANSWER = cat1.get_lives_left()
 
 # I will now test your answer - change false to true to get a hint.
 dbwebb.assert_equal("1.2", ANSWER, False)

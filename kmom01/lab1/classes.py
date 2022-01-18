@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Classes module
 ooPython - lab1 kmom01
@@ -10,7 +12,7 @@ class Cat():
     """Cat class"""
 
 
-    """Static Class Attributes"""
+    # Static Class Attribute
     nr_of_paws = 4
 
 
@@ -21,13 +23,12 @@ class Cat():
         self.eye_color = eye_color
 
 
-    def getLivesLeft(self):
+    def get_lives_left(self):
         """Getter method for lives left."""
-
         return self.lives_left
 
 
-    def setLivesLeft(self, input_lives_left):
+    def set_lives_left(self, input_lives_left):
         """Setter method for lives left"""
         self.lives_left = input_lives_left
 
@@ -36,9 +37,9 @@ class Cat():
 
     def description(self):
         """Description method to display information about the Cat object."""
-        outputText = "My cat's name is {}, has {} eyes and {} lives left to live."
+        output_string = "My cat's name is {}, has {} eyes and {} lives left to live."
 
-        return outputText.format(self.name, self. eye_color, self.lives_left)
+        return output_string.format(self.name, self. eye_color, self.lives_left)
 
 
 
@@ -52,11 +53,11 @@ class Duration():
         self.seconds = seconds
 
 
-    def __add__(self, inputObject):
+    def __add__(self, input_object):
         """ Add to the object with duration class """
-        self.hours += inputObject.hours
-        self.minutes += inputObject.minutes
-        self.seconds += inputObject.seconds
+        self.hours += input_object.hours
+        self.minutes += input_object.minutes
+        self.seconds += input_object.seconds
 
         return self
 
@@ -66,32 +67,38 @@ class Duration():
         hour = str(self.hours).zfill(2)
         minute = str(self.minutes).zfill(2)
         second = str(self.seconds).zfill(2)
-        outputString = "{}-{}-{}"
+        output_string = "{}-{}-{}"
 
-        return outputString.format(hour, minute, second)
+        return output_string.format(hour, minute, second)
 
 
     def duration_to_sec(self):
         """ Duration to seconds from string (HH-MM-SS) """
         sec = 0
-        h = 3600 * int(self[:2])
-        m = 60 * int(self[3:5])
-        s = int(self[6:])
+        h = 3600 * self.hours
+        m = 60 * self.minutes
+        s = self.seconds
         sec += (h + m + s)
 
         return sec
 
 
-    def smaller_then(self, inputObject):
-        """ Compare self to input object """
-        if self.hours < inputObject.hours:
-            return True
-        elif self.hours == inputObject.hours and \
-                self.minutes < inputObject.minutes:
-            return True
-        elif self.hours == inputObject.hours and \
-                self.minutes == inputObject.minutes and \
-                self.seconds < inputObject.seconds:
-            return True
+    def smaller_then(self, input_object):
 
-        return False
+        """ Compare self to input object """
+        if self.hours < input_object.hours:
+            result = True
+
+        elif self.hours == input_object.hours and \
+                self.minutes < input_object.minutes:
+            result = True
+
+        elif self.hours == input_object.hours and \
+                self.minutes == input_object.minutes and \
+                self.seconds < input_object.seconds:
+            result = True
+
+        else:
+            result = False
+
+        return result
