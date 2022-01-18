@@ -2,18 +2,21 @@
 
 import random
 
+
 class Die():
+    """Die class, represents a dice."""
+
 
     # Static attributes
     MIN_ROLL_VALUE = 1
     MAX_ROLL_VALUE = 6
 
 
-    def __init__(self, _value=0, sides=6):
+    def __init__(self, _value=0):
         """
-        Constructor method for class objects
+        Constructor method for class instance
         """
-        self.sides = sides
+        self.sides = self.MAX_ROLL_VALUE
         self._value = 0
 
 
@@ -39,19 +42,22 @@ class Die():
         """
         Getter method to return string representation of the dice value.
         """
-        match self._value:
-            case 1:
-                return "one"
-            case 2:
-                return "two"
-            case 3:
-                return "three"
-            case 4:
-                return "four"
-            case 5:
-                return "five"
-            case 6:
-                return "six"
+        value = self.get_value()
+
+        if value == 1:
+            return "one"
+        elif value == 2:
+            return "two"
+        elif value == 3:
+            return "three"
+        elif value == 4:
+            return "four"
+        elif value == 5:
+            return "five"
+        elif value == 6:
+            return "six"
+        elif value == 0:
+            return "No dice have been rolled yet... "
 
 
     def get_value(self):
@@ -59,3 +65,10 @@ class Die():
         Getter method to return the dice value.
         """
         return self._value
+
+
+    def get_sides(self):
+        """
+        Getter method to return number of sides on dice.
+        """
+        return self.sides
