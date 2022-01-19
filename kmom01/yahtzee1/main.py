@@ -1,33 +1,110 @@
 #!/usr/bin/env python3
 
+"""
+Main module for terminal game loop application yahtzee.
+"""
 from src.hand import Hand
 
 
+def welcome():
+    """
+    Welcome prompt for game loop yahtzee1 game.
+    """
+    print(
+"""
+Welcome to a game of Yatzy!
+...........................
+Created by: Daniel Andersson
+Version 1.0.0
+
+"""
+    )
+
+    return "start game"
+
+
+def menu(value):
+    """
+    Menu function for game loop.
+    """
+    print(
+f"""
+
+What is your next move?
+...................
+
+roll (r)    roll the dice.
+quit (q)    quit the game.
+
+..................................................
+Your current dice hand value: {value}
+..................................................
+"""
+    )
+    user_input = input("Players choice? [roll/quit]: ")
+    user_input = user_input.lower()
+
+    return str(user_input)
+
+
+def ask_dice_indexes():
+    """
+    Function to ask player for dice indexes to play.
+    """
+    print(
+"""
+Choose which dices you like to roll.
+Use index numbers in range 0 - 4 to select.
+You can separate indexes with a space to select several dice.
+If you do not select any, all of them will be rolled.
+"""
+    )
+    indexes = [0, 1, 2, 3, 4]
+    user_input = input("Choose dices to roll [0 1 2 3 4]: ")
+    user_input = user_input.lower()
+
+    if len(user_input) > 0:
+        indexes = [int(index) for index in user_input.split(" ")]
+        for index in indexes:
+            if 0 > index > 4:
+                print("Opps... you have an unvalid input index. Try between 0 and 4.")
+                ask_dice_indexes() # Recursion
+
+        return list(indexes)
+
+    return indexes
+
+
+
 if __name__ == "__main__":
-    game_on = "r"
-    round = 1
+    game_on = welcome()
 
-    print("Rolling dice hand... ")
-
+    print(
+"""
+Starting a new game of Yatzy...
+Rolling dice...
+"""
+    )
     dice_hand = Hand()
     dice_hand.roll()
+    # round += 1
+    hand_values = dice_hand.__str__()
+    game_on = menu(hand_values)
 
-    print(f"The result of your roll: {dice_hand.__str__()}")
+    while game_on == ("r" or "roll") != ("q" or "quit"):
+        if game_on == "r" or "roll":
+            dice_indexes = ask_dice_indexes()
+            print("Rolling dice... ")
+            dice_hand.roll(dice_indexes)
+            hand_values = dice_hand.__str__()
+            game_on = menu(hand_values)
+        # round += 1
 
-    while game_on == "r" != "q" and round < 3:
-        print("Do you want to roll the dices again? [yes/no]")
-        game_on = input()
+print(
+"""
+..............................
+Thank you for playing with us!
+Exiting Yatzy...
 
-        if game_on == "r":
-            print("Which dices would you like to roll again? [index of dices] ")
-            dices = input()
-            indexes = [int(num) for num in dices.split(" ")]
-
-            print("Rolling dice hand... ")
-            dice_hand.roll(indexes)
-
-            print(f"The result of your last dice hand roll: {dice_hand.__str__()}")
-
-        round += 1
-
-print("Exit the game of Yatzy... ")
+"""
+)

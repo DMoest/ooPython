@@ -4,6 +4,7 @@
 Test module for instances of class Die.
 """
 import unittest
+import random
 from src.die import Die
 
 
@@ -16,6 +17,7 @@ class TestDie(unittest.TestCase):
         """
         Build up method that runs before each test case.
         """
+        random.seed("ooPython_kmom01")
         self.die = Die()
 
 
@@ -40,9 +42,32 @@ class TestDie(unittest.TestCase):
         Test types on object instance attributes.
         """
         self.assertEqual(type(self.die.get_value()), int)
+        self.assertNotEqual(type(self.die.get_value()), str)
+        self.assertNotEqual(type(self.die.get_value()), bool)
+        self.assertNotEqual(type(self.die.get_value()), list)
+        self.assertNotEqual(type(self.die.get_value()), dict)
+        self.assertNotEqual(type(self.die.get_value()), tuple)
+
         self.assertEqual(type(self.die.sides), int)
+        self.assertNotEqual(type(self.die.sides), str)
+        self.assertNotEqual(type(self.die.sides), bool)
+        self.assertNotEqual(type(self.die.sides), list)
+        self.assertNotEqual(type(self.die.sides), dict)
+        self.assertNotEqual(type(self.die.sides), tuple)
+
         self.assertEqual(type(self.die.__str__()), str)
+        self.assertNotEqual(type(self.die.__str__()), int)
+        self.assertNotEqual(type(self.die.__str__()), bool)
+        self.assertNotEqual(type(self.die.__str__()), list)
+        self.assertNotEqual(type(self.die.__str__()), dict)
+        self.assertNotEqual(type(self.die.__str__()), tuple)
+
         self.assertEqual(type(self.die.get_name()), str)
+        self.assertNotEqual(type(self.die.get_name()), int)
+        self.assertNotEqual(type(self.die.get_name()), bool)
+        self.assertNotEqual(type(self.die.get_name()), list)
+        self.assertNotEqual(type(self.die.get_name()), dict)
+        self.assertNotEqual(type(self.die.get_name()), tuple)
 
 
     def test_die_object_for_instance_of_class(self):
@@ -57,3 +82,16 @@ class TestDie(unittest.TestCase):
         Test die roll value type
         """
         self.assertEqual(type(self.die.roll()), int)
+        self.assertNotEqual(type(self.die.roll()), str)
+        self.assertNotEqual(type(self.die.roll()), bool)
+        self.assertNotEqual(type(self.die.roll()), list)
+        self.assertNotEqual(type(self.die.roll()), dict)
+        self.assertNotEqual(type(self.die.roll()), tuple)
+
+
+    def test_random_dice_roll(self):
+        """
+        Test die roll for random value with random seed
+        """
+        self.assertEqual(self.die.roll(), 2)
+
