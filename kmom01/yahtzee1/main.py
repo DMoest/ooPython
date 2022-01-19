@@ -33,15 +33,15 @@ f"""
 What is your next move?
 ...................
 
-roll (r)    roll the dice.
-quit (q)    quit the game.
+r       roll the dice.
+q       quit the game.
 
 ..................................................
 Your current dice hand value: {value}
 ..................................................
 """
     )
-    user_input = input("Players choice? [roll/quit]: ")
+    user_input = input("Players choice? [r/q]: ")
     user_input = user_input.lower()
 
     return str(user_input)
@@ -91,8 +91,8 @@ Rolling dice...
     hand_values = dice_hand.__str__()
     game_on = menu(hand_values)
 
-    while game_on == ("r" or "roll") != ("q" or "quit"):
-        if game_on == "r" or "roll":
+    while game_on == "r" != "q":
+        if game_on == "r":
             dice_indexes = ask_dice_indexes()
             print("Rolling dice... ")
             dice_hand.roll(dice_indexes)
