@@ -15,12 +15,12 @@ class Die():
     MAX_ROLL_VALUE = 6
 
 
-    def __init__(self, _value=0):
+    def __init__(self, sides=6, value=0):
         """
         Constructor method for class instance
         """
-        self.sides = self.MAX_ROLL_VALUE
-        self._value = 0
+        self.sides = sides
+        self._value = value
 
 
     def __str__(self):
