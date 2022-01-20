@@ -64,13 +64,16 @@ If you do not select any, all of them will be rolled.
     user_input = user_input.lower()
 
     if len(user_input) > 0:
+        message = ""
         indexes = [int(index) for index in user_input.split(" ")]
+
         for index in indexes:
             if 0 > index > 4:
                 print("Opps... you have an unvalid input index. Try between 0 and 4.")
-                ask_dice_indexes() # Recursion
 
         return list(indexes)
+
+    print("Rolling dice... ")
 
     return indexes
 
@@ -94,7 +97,6 @@ Rolling dice...
     while game_on == "r" != "q":
         if game_on == "r":
             dice_indexes = ask_dice_indexes()
-            print("Rolling dice... ")
             dice_hand.roll(dice_indexes)
             hand_values = dice_hand.__str__()
             game_on = menu(hand_values)

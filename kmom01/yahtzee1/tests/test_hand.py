@@ -66,12 +66,12 @@ class TestHand(unittest.TestCase):
         self.assertNotEqual(type(self.hand.die), dict)
         self.assertNotEqual(type(self.hand.die), tuple)
 
-        self.assertEqual(type(self.hand.values), list)
-        self.assertNotEqual(type(self.hand.values), str)
-        self.assertNotEqual(type(self.hand.values), bool)
-        self.assertNotEqual(type(self.hand.values), int)
-        self.assertNotEqual(type(self.hand.values), dict)
-        self.assertNotEqual(type(self.hand.values), tuple)
+        self.assertEqual(type(self.hand.get_values()), list)
+        self.assertNotEqual(type(self.hand.get_values()), str)
+        self.assertNotEqual(type(self.hand.get_values()), bool)
+        self.assertNotEqual(type(self.hand.get_values()), int)
+        self.assertNotEqual(type(self.hand.get_values()), dict)
+        self.assertNotEqual(type(self.hand.get_values()), tuple)
 
 
     def test_hand_object_for_instance_of_class(self):
@@ -98,3 +98,6 @@ class TestHand(unittest.TestCase):
         self.assertEqual(type(self.hand.roll()), list)
         self.assertNotEqual(type(self.hand.roll()), str)
         self.assertNotEqual(type(self.hand.roll()), int)
+        self.assertNotEqual(type(self.hand.roll()), bool)
+        self.assertNotEqual(type(self.hand.roll()), dict)
+        self.assertNotEqual(type(self.hand.roll()), tuple)

@@ -31,9 +31,18 @@ class TestDie(unittest.TestCase):
         """
         Test the initial values on a new object instance of die.
         """
-        self.assertEqual(self.die.get_value(), 0)
+        self.assertEqual(self.die.get_value(), None)
+        self.assertNotEqual(self.die.get_value(), "")
+        self.assertNotEqual(self.die.get_value(), [])
+        self.assertNotEqual(self.die.get_value(), ())
         self.assertEqual(self.die.sides, 6)
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
+        self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
+
+        self.assertNotEqual(self.die.sides, "")
+
+        self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
+        # Ska man kunna välja antal sidor på en tärning blir det här fel...
         self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
 
 
@@ -41,7 +50,8 @@ class TestDie(unittest.TestCase):
         """
         Test types on object instance attributes.
         """
-        self.assertEqual(type(self.die.get_value()), int)
+        # self.assertEqual(type(self.die.get_value()), None)
+        self.assertNotEqual(type(self.die.get_value()), int)
         self.assertNotEqual(type(self.die.get_value()), str)
         self.assertNotEqual(type(self.die.get_value()), bool)
         self.assertNotEqual(type(self.die.get_value()), list)
@@ -94,4 +104,3 @@ class TestDie(unittest.TestCase):
         Test die roll for random value with random seed
         """
         self.assertEqual(self.die.roll(), 2)
-

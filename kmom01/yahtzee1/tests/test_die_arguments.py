@@ -42,7 +42,8 @@ class TestDie(unittest.TestCase):
         self.assertNotEqual(self.die.sides, "")
 
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
-        self.assertEqual(self.die.MAX_ROLL_VALUE, 6) # Ska man kunna välja antal sidor blir det här fel.
+        # Ska man kunna välja antal sidor på en tärning blir det här fel...
+        self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
 
 
     def test_die_attribute_types(self):

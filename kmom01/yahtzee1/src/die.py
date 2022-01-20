@@ -9,13 +9,12 @@ import random
 class Die():
     """Die class, represents a dice."""
 
-
     # Static attributes
     MIN_ROLL_VALUE = 1
     MAX_ROLL_VALUE = 6
 
 
-    def __init__(self, sides=6, value=0):
+    def __init__(self, sides=6, value=None):
         """
         Constructor method for class instance
         """
@@ -36,9 +35,9 @@ class Die():
         Value is generated randomly from range defined with
         the static attributes MIN_ROLL_VALUE and MAX_ROLL_VALUE.
         """
-        dice_value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
+        self._value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
 
-        return dice_value
+        return self._value
 
 
     def get_name(self):
@@ -63,7 +62,6 @@ class Die():
             output_string = "No dice have been rolled yet... "
 
         return output_string
-
 
 
     def get_value(self):

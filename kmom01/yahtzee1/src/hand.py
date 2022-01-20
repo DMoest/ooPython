@@ -7,58 +7,96 @@ from src.die import Die
 
 
 class Hand():
-    """Hand class, represents a hand of dices. """
+    """
+    Hand class, represents a hand of dices.
+    """
 
-    def __init__(self, num_of_dices=5):
+    def __init__(self, dice=None):
         """
         Constructor method for class instance
         """
         self.indexes = []
         self.die = []
-        self.values = []
-        x = 0
+        self._values = []
 
-        while x < num_of_dices:
-            self.die.append(Die())
-            self.indexes.append(x)
-            self.values.append(self.die[x].get_value())
-            x += 1
+        if dice is None:
+            x = 0
+
+            while x < 5:
+                self.die.append(Die())
+                self.indexes.append(x)
+                self._values.append(0)
+                x += 1
+
+        else:
+            for die in dice:
+                self.die.append(Die())
+                self.indexes.append(die)
+                if self.die[die].get_value() is None:
+                    self._values.append(0)
+                else:
+                    self._values.append(self.die[die].get_value())
 
 
     def __str__(self):
-        """Getter method to return string of values from dices in hand"""
-        string_values = [str(value) for value in self.values]
-        output_string = ",".join(string_values)
+        """
+        Getter method to return string of values from dice in hand
+        """
+        output_string = ""
+        x = 0
+
+        while x < len(self._values):
+            value = self.die[x].get_value()
+
+            if value is None:
+                output_string += str(0)
+            else:
+                output_string += str(value)
+
+            if x != len(self._values) -1:
+                output_string += ","
+
+            x += 1
 
         return output_string
 
 
-    def roll(self, indexes=[]):
-        """Setter method to roll dices in hand"""
-
-        if len(indexes) == 0:
-            try:
-                for die_index in self.indexes:
-                    value = self.die[die_index].roll()
-                    self.values[die_index] = value
-            except ValueError:
-                print(f"Opps... somethings worng with your input indexes. \n {ValueError}")
+    def roll(self, indexes=None):
+        """
+        Setter method to roll dices in hand
+        """
+        if indexes is None:
+            for die_index in self.indexes:
+                value = self.die[die_index].roll()
+                self._values[die_index] = value
         elif len(indexes) > 0:
-            try:
-                for die_index in indexes:
+            for die_index in indexes:
+                if 0 <= die_index <= 4:
                     value = self.die[die_index].roll()
-                    self.values[die_index] = value
-            except ValueError:
-                print(f"Opps... somethings worng with your input indexes. \n {ValueError}")
+                    self._values[die_index] = value
+                else:
+                    print(f"Opps... somethings wrong with your input indexes. \n")
 
-        return self.values
+        return self._values
+
+
+    def get_values(self):
+        """
+        Getter method for list of values of dice in hand.
+        """
+        return self._values
 
 
     def get_total_value(self):
-        """Getter method to calculate and return the total value of dices in hand."""
+        """
+        Getter method to calculate and return the total value of dices in hand.
+        """
         total = 0
 
-        for value in self.values:
-            total += value
+        for value in self._values:
+            if value == type(None):
+                total += 0
+            elif value == type(int):
+                total += value
 
         return total
