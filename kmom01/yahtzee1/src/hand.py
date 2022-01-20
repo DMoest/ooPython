@@ -75,7 +75,7 @@ class Hand():
                     value = self.die[die_index].roll()
                     self._values[die_index] = value
                 else:
-                    print(f"Opps... somethings wrong with your input indexes. \n")
+                    print("Opps... somethings wrong with your input indexes. ")
 
         return self._values
 

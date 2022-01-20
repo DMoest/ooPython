@@ -62,19 +62,21 @@ If you do not select any, all of them will be rolled.
     indexes = [0, 1, 2, 3, 4]
     user_input = input("Choose dices to roll [0 1 2 3 4]: ")
     user_input = user_input.lower()
+    message = "Rolling dice: "
 
     if len(user_input) > 0:
-        message = ""
         indexes = [int(index) for index in user_input.split(" ")]
 
         for index in indexes:
             if 0 > index > 4:
                 print("Opps... you have an unvalid input index. Try between 0 and 4.")
+            else:
+                message += str(index) + " "
 
+        print(f"{message}")
         return list(indexes)
 
-    print("Rolling dice... ")
-
+    print("Rolling all dice in hand... ")
     return indexes
 
 
