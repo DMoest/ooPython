@@ -135,3 +135,9 @@ dmypy.json
 
 # Flask ENV
 **.flaskenv
+
+# Node Modules
+**/node_modules
+
+# Flask-assets cache files
+**/.webassets-cache

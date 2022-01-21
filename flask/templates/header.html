@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="sv">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        {# GOOGLE Fonts import link #}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<header class="block top-0 p-6 bg-gray-700">
+    <h1 class="text-6xl text-center text-yellow-500 my-6">Skapa en dynamisk header-text</h1>
 
-        {# Load stylesheet #}
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-
-        <title>Flask Yatzy App</title>
-    </head>
-
-    <header>
-        <h1>Världens fetaste header med bilder och stuff...</h1>
-
-        {% include "navbar.html" %}
-    </header>
-
-    <body>
+    {% include "navbar.html" %}
+</header>

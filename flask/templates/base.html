@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="nofollow" />
+        <meta name="keywords" content="flask, app, application, yatzy, course, bth, BTH, oopython, python" />
+        <meta name="description" content="Flask yatzy application made for the course ooPython @ BTH vt22."/>
+        <meta http-equiv="author" content="Daniel Andersson" />
+
+        <title>Flask Yatzy Application</title>
+
+        {# GOOGLE Fonts import link #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+        {# TailwindCss CDN #}
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        {# VARFÖR FUNGERAR INTE TAILWINDCSS CONFIG MED FLASK-ASSETS??? #}
+        {# Dest saknas färger osv. men marginaler, paddings, texter fungerar #}
+        {# TODO: Fixa så tailwind setup fungerar utan CDN då det blir mycket mer dynamiskt och configurerbart. #}
+{#        {% assets 'style' %}#}
+{#            <link rel="stylesheet" href="{{ ASSET_URL }}">#}
+{#            <link rel="stylesheet" href="{{ url_for('static', filename='dist/style.css') }}">#}
+{#        {% endassets %}#}
+{##}
+{#        {% assets 'js' %}#}
+{#            <script type="text/javascript" src="{{ ASSET_URL }}"></script>#}
+{#        {% endassets %}#}
+    </head>
+
+    {% include "header.html" %}
+
+    <body class="bg-white flex-grow">
+        {% block content %}
+        {% endblock content %}
+    </body>
+                          style="background=#fff"
+    {% include "footer.html" %}
+
+</html>
