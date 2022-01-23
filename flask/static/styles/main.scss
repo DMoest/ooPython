@@ -1,0 +1,16 @@
+/**
+ * Tailwind - base, components & utility classes
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/**
+ * Component Imports
+ */
+@import 'scss/abstracts';
+@import 'scss/buttons';
+@import 'scss/content';
+@import 'scss/layout';
+@import 'scss/typography';

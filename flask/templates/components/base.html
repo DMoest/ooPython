@@ -14,14 +14,18 @@
         {# GOOGLE Fonts import link #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Oswald:wght@500&display=swap" rel="stylesheet">
 
         {# TailwindCss CDN #}
-        <script src="https://cdn.tailwindcss.com"></script>
+{#        <script src="https://cdn.tailwindcss.com"></script>#}
 
-        {# VARFÖR FUNGERAR INTE TAILWINDCSS CONFIG MED FLASK-ASSETS??? #}
-        {# Dest saknas färger osv. men marginaler, paddings, texter fungerar #}
-        {# TODO: Fixa så tailwind setup fungerar utan CDN då det blir mycket mer dynamiskt och configurerbart. #}
+        {# Stylesheet import - Ful Fix utan tree-shake #}
+        <link rel="stylesheet" href="static/dist/style.css">
+
+        {# VARFÖR FUNGERAR INTE AUTO COMPILE FÖR TAILWINDCSS MED FLASK-ASSETS??? #}
+        {# TODO: Fixa så tailwind setup fungerar bättre utan CDN och med auto compilering osv. då det blir mycket mer
+         dynamiskt och configurerbart. #}
+
 {#        {% assets 'style' %}#}
 {#            <link rel="stylesheet" href="{{ ASSET_URL }}">#}
 {#            <link rel="stylesheet" href="{{ url_for('static', filename='dist/style.css') }}">#}
@@ -32,13 +36,17 @@
 {#        {% endassets %}#}
     </head>
 
-    {% include "header.html" %}
+    {# Header #}
+    {% include "components/header.html" %}
 
-    <body class="bg-white flex-grow">
-        {% block content %}
-        {% endblock content %}
+    <body class="bg-gray-100">
+        <div class="m-6 p-6 rounded md:px-24 flex-grow bg-white shadow-lg text-lg text-secondary-10 font-paragraph">
+            {% block content %}
+            {% endblock content %}
+        </div>
     </body>
-                          style="background=#fff"
-    {% include "footer.html" %}
+
+    {# Footer #}
+    {% include "components/footer.html" %}
 
 </html>

@@ -5,7 +5,7 @@
   "main": "app.py",
   "scripts": {
     "test": "python3 test.py",
-    "dev": "cross-env TAILWIND_MODE=watch NODE_ENV=development postcss ./static/styles/tailwind.css -o ./static/dist/style.css -w",
+    "dev": "cross-env TAILWIND_MODE=watch NODE_ENV=development postcss ./static/styles/tailwind.css -o ./static/dist/style.css --watch",
     "build:prod": "cross-env TAILWIND_MODE=build NODE_ENV=production postcss ./static/styles/tailwind.css -o ./static/dist/style.css"
   },
   "keywords": [

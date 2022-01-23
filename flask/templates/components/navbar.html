@@ -1,0 +1,12 @@
+<!-- Site Navigation Component -->
+<nav class="h-auto w-full p-6 bg-secondary-10">
+    <div class="mx-16 flex flex-row justify-around gap-4 md:gap-20">
+        {% for page in pages %}
+            <a href="{{ page.route }}"
+               class="w-1/6 p-4 rounded text-center text-2xl text-primary-10 bg-quaternary-10 hover:bg-quinary-10
+               shadow-lg shadow-gray-900 focus:shadow-inner font-button">{{
+                    page.name
+                    }}</a>
+        {% endfor %}
+    </div>
+</nav>
