@@ -59,22 +59,27 @@ class Duration:
         hour = str(self.hours).zfill(2)
         minute = str(self.minutes).zfill(2)
         second = str(self.seconds).zfill(2)
-        output_string = "{}-{}-{}"
+        output_string = f"{hour}-{minute}-{second}"
 
-        return output_string.format(hour, minute, second)
+        return output_string
 
-    def duration_to_sec(self):
+    @staticmethod
+    def duration_to_sec(duration_string):
         """ Duration to seconds from string (HH-MM-SS) """
-        sec = 0
-        h = 3600 * int(self[:2])
-        m = 60 * int(self[3:5])
-        s = int(self[6:])
-        sec += (h + m + s)
+        duration_list = duration_string.split("-")
+        x = 3600
+        index = 0
+        seconds = 0
 
-        return sec
+        while x >= 1:
+            value = int(duration_list[index]) * x
+            seconds += value
+            x = x / 60
+            index += 1
+
+        return int(seconds)
 
     def smaller_then(self, input_object):
-
         """ Compare self to input object """
         if self.hours < input_object.hours:
             result = True

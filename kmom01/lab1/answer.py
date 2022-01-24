@@ -244,7 +244,6 @@ dbwebb.assert_equal("1.7", ANSWER, False)
 #
 
 
-
 duration1sec = Duration.duration_to_sec(duration1.display())
 
 ANSWER = duration1sec

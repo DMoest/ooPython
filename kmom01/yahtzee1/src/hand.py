@@ -16,26 +16,23 @@ class Hand():
         Constructor method for class instance
         """
         self.indexes = []
-        self.die = []
+        self.dice = []
         self._values = []
+        x = 0
 
-        if dice is None:
-            x = 0
-
+        if dice is not None and dice > 0:
             while x < 5:
-                self.die.append(Die())
+                self.dice.append(Die(dice[x]))
                 self.indexes.append(x)
-                self._values.append(0)
+                self._values.append(self.dice[x].get_value())
                 x += 1
 
         else:
-            for die in dice:
-                self.die.append(Die())
-                self.indexes.append(die)
-                if self.die[die].get_value() is None:
-                    self._values.append(0)
-                else:
-                    self._values.append(self.die[die].get_value())
+            while x < 5:
+                self.dice.append(Die())
+                self.indexes.append(x)
+                self._values.append(self.dice[x].get_value())
+                x += 1
 
     def __str__(self):
         """
@@ -45,12 +42,8 @@ class Hand():
         x = 0
 
         while x < len(self._values):
-            value = self.die[x].get_value()
-
-            if value is None:
-                output_string += str(0)
-            else:
-                output_string += str(value)
+            value = self.dice[x].get_value()
+            output_string += str(value)
 
             if x != len(self._values) - 1:
                 output_string += ","
@@ -64,14 +57,14 @@ class Hand():
         Setter method to roll dices in hand
         """
         if indexes is None:
-            for die_index in self.indexes:
-                value = self.die[die_index].roll()
-                self._values[die_index] = value
+            for dice_index in self.indexes:
+                value = self.dice[dice_index].roll()
+                self._values[dice_index] = value
         elif len(indexes) > 0:
-            for die_index in indexes:
-                if 0 <= die_index <= 4:
-                    value = self.die[die_index].roll()
-                    self._values[die_index] = value
+            for dice_index in indexes:
+                if 0 <= dice_index <= 4:
+                    value = self.dice[dice_index].roll()
+                    self._values[dice_index] = value
                 else:
                     print("Opps... somethings wrong with your input indexes. ")
 
@@ -98,4 +91,4 @@ class Hand():
         """
         Getter method for returning dice objects in hand.
         """
-        return self.die
+        return self.dice

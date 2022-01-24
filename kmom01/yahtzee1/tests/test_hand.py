@@ -30,8 +30,8 @@ class TestHand(unittest.TestCase):
         """
         Test the initial values on a new object instance of die.
         """
-        self.assertEqual(self.hand.get_total_value(), 0)
-        self.assertEqual(self.hand.__str__(), "0,0,0,0,0")
+        self.assertEqual(self.hand.get_total_value(), 14)
+        self.assertEqual(self.hand.__str__(), "3,2,3,2,4")
 
 
     def test_hand_attribute_types(self):
@@ -59,12 +59,12 @@ class TestHand(unittest.TestCase):
         self.assertNotEqual(type(self.hand.indexes), dict)
         self.assertNotEqual(type(self.hand.indexes), tuple)
 
-        self.assertEqual(type(self.hand.die), list)
-        self.assertNotEqual(type(self.hand.die), str)
-        self.assertNotEqual(type(self.hand.die), bool)
-        self.assertNotEqual(type(self.hand.die), int)
-        self.assertNotEqual(type(self.hand.die), dict)
-        self.assertNotEqual(type(self.hand.die), tuple)
+        self.assertEqual(type(self.hand.dice), list)
+        self.assertNotEqual(type(self.hand.dice), str)
+        self.assertNotEqual(type(self.hand.dice), bool)
+        self.assertNotEqual(type(self.hand.dice), int)
+        self.assertNotEqual(type(self.hand.dice), dict)
+        self.assertNotEqual(type(self.hand.dice), tuple)
 
         self.assertEqual(type(self.hand.get_values()), list)
         self.assertNotEqual(type(self.hand.get_values()), str)
@@ -86,7 +86,7 @@ class TestHand(unittest.TestCase):
         """
         Test dice hand dices for object instances.
         """
-        for die in self.hand.die:
+        for die in self.hand.dice:
             self.assertIsInstance(die, Die)
             self.assertNotIsInstance(die, Hand)
 

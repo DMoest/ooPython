@@ -6,27 +6,33 @@ Die class module.
 import random
 
 
-class Die():
-    """Die class, represents a dice."""
+class Die:
+    """
+    Die class, represents a dice.
+    """
 
     # Static attributes
     MIN_ROLL_VALUE = 1
     MAX_ROLL_VALUE = 6
 
-
     def __init__(self, value=None):
         """
         Constructor method for class instance
         """
-        self._value = value
-
+        if value is not None and value > self.MAX_ROLL_VALUE:
+            self._value = self.MAX_ROLL_VALUE
+        elif value is not None and value < self.MIN_ROLL_VALUE:
+            self._value = self.MIN_ROLL_VALUE
+        elif value is None:
+            self._value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
+        else:
+            self._value = value
 
     def __str__(self):
         """
         Return string representation for attribute _value
         """
         return str(self._value)
-
 
     def roll(self):
         """
@@ -37,7 +43,6 @@ class Die():
         self._value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
 
         return self._value
-
 
     def get_name(self):
         """
@@ -61,7 +66,6 @@ class Die():
             output_string = "No dice have been rolled yet... "
 
         return output_string
-
 
     def get_value(self):
         """
