@@ -7,14 +7,11 @@ Daniel Andersson, daap19
 """
 
 
-
-class Cat():
+class Cat:
     """Cat class"""
-
 
     # Static Class Attribute
     nr_of_paws = 4
-
 
     def __init__(self, name, eye_color, lives_left=(-1)):
         """Constructor method."""
@@ -22,11 +19,9 @@ class Cat():
         self.name = name
         self.eye_color = eye_color
 
-
     def get_lives_left(self):
         """Getter method for lives left."""
         return self.lives_left
-
 
     def set_lives_left(self, input_lives_left):
         """Setter method for lives left"""
@@ -34,16 +29,14 @@ class Cat():
 
         return self.lives_left
 
-
     def description(self):
         """Description method to display information about the Cat object."""
         output_string = "My cat's name is {}, has {} eyes and {} lives left to live."
 
-        return output_string.format(self.name, self. eye_color, self.lives_left)
+        return output_string.format(self.name, self.eye_color, self.lives_left)
 
 
-
-class Duration():
+class Duration:
     """Duration class"""
 
     def __init__(self, hours, minutes, seconds):
@@ -52,15 +45,14 @@ class Duration():
         self.minutes = minutes
         self.seconds = seconds
 
-
     def __add__(self, input_object):
         """ Add to the object with duration class """
+
         self.hours += input_object.hours
         self.minutes += input_object.minutes
         self.seconds += input_object.seconds
 
         return self
-
 
     def display(self):
         """ Display duration hh-mm-ss """
@@ -71,17 +63,15 @@ class Duration():
 
         return output_string.format(hour, minute, second)
 
-
     def duration_to_sec(self):
         """ Duration to seconds from string (HH-MM-SS) """
         sec = 0
-        h = 3600 * self.hours
-        m = 60 * self.minutes
-        s = self.seconds
+        h = 3600 * int(self[:2])
+        m = 60 * int(self[3:5])
+        s = int(self[6:])
         sec += (h + m + s)
 
         return sec
-
 
     def smaller_then(self, input_object):
 

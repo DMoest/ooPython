@@ -37,7 +37,6 @@ class Hand():
                 else:
                     self._values.append(self.die[die].get_value())
 
-
     def __str__(self):
         """
         Getter method to return string of values from dice in hand
@@ -53,13 +52,12 @@ class Hand():
             else:
                 output_string += str(value)
 
-            if x != len(self._values) -1:
+            if x != len(self._values) - 1:
                 output_string += ","
 
             x += 1
 
         return output_string
-
 
     def roll(self, indexes=None):
         """
@@ -79,13 +77,11 @@ class Hand():
 
         return self._values
 
-
     def get_values(self):
         """
         Getter method for list of values of dice in hand.
         """
         return self._values
-
 
     def get_total_value(self):
         """
@@ -93,10 +89,13 @@ class Hand():
         """
         total = 0
 
-        for value in self._values:
-            if value == type(None):
-                total += 0
-            elif value == type(int):
-                total += value
+        for value in self.get_values():
+            total += value
 
         return total
+
+    def get_dice(self):
+        """
+        Getter method for returning dice objects in hand.
+        """
+        return self.die
