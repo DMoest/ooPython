@@ -18,7 +18,7 @@ class TestDie(unittest.TestCase):
         Build up method that runs before each test case.
         """
         random.seed("ooPython_kmom01")
-        self.die = Die(10, 5)
+        self.die = Die(5)
 
 
     # def tearDown(self):
@@ -37,10 +37,6 @@ class TestDie(unittest.TestCase):
         self.assertNotEqual(self.die.get_value(), [])
         self.assertNotEqual(self.die.get_value(), ())
 
-        self.assertEqual(self.die.sides, 10)
-        self.assertNotEqual(self.die.sides, 6)
-        self.assertNotEqual(self.die.sides, "")
-
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
         # Ska man kunna välja antal sidor på en tärning blir det här fel...
         self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
@@ -51,7 +47,6 @@ class TestDie(unittest.TestCase):
         Test types on object instance attributes.
         """
         self.assertEqual(type(self.die.get_value()), int)
-        self.assertEqual(type(self.die.sides), int)
         self.assertEqual(type(self.die.__str__()), str)
         self.assertEqual(type(self.die.get_name()), str)
 

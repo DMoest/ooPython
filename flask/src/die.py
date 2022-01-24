@@ -14,11 +14,10 @@ class Die():
     MAX_ROLL_VALUE = 6
 
 
-    def __init__(self, sides=6, value=None):
+    def __init__(self, value=None):
         """
         Constructor method for class instance
         """
-        self.sides = sides
         self._value = value
 
 
@@ -69,10 +68,3 @@ class Die():
         Getter method to return the dice value.
         """
         return self._value
-
-
-    def get_sides(self):
-        """
-        Getter method to return number of sides on dice.
-        """
-        return self.sides

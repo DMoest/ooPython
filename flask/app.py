@@ -69,7 +69,9 @@ def page_not_found(e):
     """
     Handler for page not found 404
     """
+    # pylint: disable=no-member
     # pylint: disable=unused-argument
+    # pylint: disable=undefined-variable
     return "Flask 404 here, but not the page you requested."
 
 
@@ -78,7 +80,9 @@ def internal_server_error(e):
     """
     Handler for internal server error 500
     """
+    # pylint: disable=no-member
     # pylint: disable=unused-argument
+    # pylint: disable=undefined-variable
     return "<p>Flask 500<pre>" + traceback.format_exc()
 
 

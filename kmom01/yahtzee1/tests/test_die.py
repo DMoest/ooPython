@@ -35,11 +35,8 @@ class TestDie(unittest.TestCase):
         self.assertNotEqual(self.die.get_value(), "")
         self.assertNotEqual(self.die.get_value(), [])
         self.assertNotEqual(self.die.get_value(), ())
-        self.assertEqual(self.die.sides, 6)
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
         self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
-
-        self.assertNotEqual(self.die.sides, "")
 
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
         # Ska man kunna välja antal sidor på en tärning blir det här fel...
@@ -57,13 +54,6 @@ class TestDie(unittest.TestCase):
         self.assertNotEqual(type(self.die.get_value()), list)
         self.assertNotEqual(type(self.die.get_value()), dict)
         self.assertNotEqual(type(self.die.get_value()), tuple)
-
-        self.assertEqual(type(self.die.sides), int)
-        self.assertNotEqual(type(self.die.sides), str)
-        self.assertNotEqual(type(self.die.sides), bool)
-        self.assertNotEqual(type(self.die.sides), list)
-        self.assertNotEqual(type(self.die.sides), dict)
-        self.assertNotEqual(type(self.die.sides), tuple)
 
         self.assertEqual(type(self.die.__str__()), str)
         self.assertNotEqual(type(self.die.__str__()), int)
