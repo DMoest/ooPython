@@ -3,7 +3,6 @@
 """
 Init for test modules.
 """
-
 __all__ = [
     'test_die',
     'test_die_arguments',

@@ -86,4 +86,4 @@ class TestDie(unittest.TestCase):
         """
         Test die roll for random value with random seed
         """
-        self.assertEqual(self.die.roll(), 1)
+        self.assertEqual(self.die.roll(), 6)

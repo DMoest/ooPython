@@ -24,7 +24,7 @@ class Die:
         elif value is not None and value < self.MIN_ROLL_VALUE:
             self._value = self.MIN_ROLL_VALUE
         elif value is None:
-            self._value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
+            self._value = random.randint(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE)
         else:
             self._value = value
 
@@ -40,7 +40,7 @@ class Die:
         Value is generated randomly from range defined with
         the static attributes MIN_ROLL_VALUE and MAX_ROLL_VALUE.
         """
-        self._value = random.randrange(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE, 1)
+        self._value = random.randint(self.MIN_ROLL_VALUE, self.MAX_ROLL_VALUE)
 
         return self._value
 

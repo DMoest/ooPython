@@ -19,7 +19,6 @@ Version 1.0.0
 
 """
     )
-
     return "start game"
 
 
@@ -29,7 +28,6 @@ def menu(value):
     """
     print(
 f"""
-
 What is your next move?
 ...................
 
@@ -43,7 +41,6 @@ Your current dice hand value: {value}
     )
     user_input = input("Players choice? [r/q]: ")
     user_input = user_input.lower()
-
     return str(user_input)
 
 
@@ -66,7 +63,6 @@ If you do not select any, all of them will be rolled.
 
     if len(user_input) > 0:
         indexes = [int(index) for index in user_input.split(" ")]
-
         for index in indexes:
             if 0 > index > 4:
                 print("Opps... you have an unvalid input index. Try between 0 and 4.")

@@ -4,6 +4,7 @@
 Test module for instances of class Hand.
 """
 import unittest
+import random
 from src.hand import Hand
 from src.die import Die
 
@@ -17,6 +18,7 @@ class TestHand(unittest.TestCase):
         """
         Build up method that runs before each test case.
         """
+        random.seed("oopython")
         self.hand = Hand()
 
 
@@ -30,8 +32,8 @@ class TestHand(unittest.TestCase):
         """
         Test the initial values on a new object instance of die.
         """
-        self.assertEqual(self.hand.get_total_value(), 14)
-        self.assertEqual(self.hand.__str__(), "3,2,3,2,4")
+        self.assertEqual(self.hand.get_total_value(), 16)
+        self.assertEqual(self.hand.__str__(), "4, 6, 1, 2, 3")
 
 
     def test_hand_attribute_types(self):
@@ -51,13 +53,6 @@ class TestHand(unittest.TestCase):
         self.assertNotEqual(type(self.hand.__str__()), list)
         self.assertNotEqual(type(self.hand.__str__()), dict)
         self.assertNotEqual(type(self.hand.__str__()), tuple)
-
-        self.assertEqual(type(self.hand.indexes), list)
-        self.assertNotEqual(type(self.hand.indexes), str)
-        self.assertNotEqual(type(self.hand.indexes), bool)
-        self.assertNotEqual(type(self.hand.indexes), int)
-        self.assertNotEqual(type(self.hand.indexes), dict)
-        self.assertNotEqual(type(self.hand.indexes), tuple)
 
         self.assertEqual(type(self.hand.dice), list)
         self.assertNotEqual(type(self.hand.dice), str)
