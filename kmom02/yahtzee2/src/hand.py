@@ -53,7 +53,7 @@ class Hand:
 
         return hand_values
 
-    def get_values(self):
+    def to_list(self):
         """
         Getter method for list of values of dice in hand.
         """
