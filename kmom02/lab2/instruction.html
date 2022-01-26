@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lab 2 - oopython</title>
+<style>
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 8px auto;
+    max-width: 700px;
+}
+
+h2 {
+    line-height: 2.5em;
+    border-bottom: 1px solid #aaa;
+}
+
+h3 {
+    line-height: 2.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+p {
+    margin-bottom: 22px;
+}
+
+div.answer {
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  margin-bottom: 1em;
+}
+
+.fail {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.nopass {
+    color: olive;
+}
+
+.pass {
+    color: green;
+}
+
+.passdistinct {
+    color: DarkGoldenRod;
+}
+table, th, td {
+    border: 1px solid #666;
+}
+
+code {
+    background-color: #eee;
+    border: 1px solid #999;
+    padding: 1px;
+    font-size: larger;
+}
+
+pre code {
+    display: block;
+    background-color: #eee;
+    border: none;
+    border-left: 2px solid #999;
+    padding: 0.5em;
+    margin-bottom: 22px;
+}
+</style>
+</head>
+<body>
+
+<pre>
+f9d8662c34738bf3bb8449176d4f322d
+oopython
+lab2
+v2
+daap19
+2022-01-24 21:47:06
+v4.0.0 (2019-03-05)
+</pre>
+
+<p><i>Generated 2022-01-24 22:47:06 by <a href="https://github.com/dbwebb-se/lab">dbwebb lab-utility</a> v4.0.0 (2019-03-05).</i></p>
+<hr>
+
+<h1>Lab 2 - oopython</h1>
+<p>If you need to peek at examples or just want to know more, take a look at the <a href="https://docs.python.org/3/library/index.html">Python documentation</a>. Here you will find everything this lab will go through and much more.</p>
+
+
+<h2>1. Class relationships</h2>
+<p>Practice on creating classes and relationships between them in python.</p>
+
+
+<h3>Exercise 1.1 (2 points)</h3>
+<p>Create a new file, put your code for the classes in it, call it <strong>classes.py</strong>.</p>
+
+<p>Create a new class named <strong>Person</strong>.  Give the class the instance attributes &#8220;name&#8221; and &#8220;ssn&#8221;. Make &#8220;ssn&#8221; a private attribute. The values for the attributes should be sent to the constructor as arguments.
+Create a get method for &#8220;ssn&#8221;.</p>
+
+<p>In the code below create a new variable called <strong>per</strong> and set it to a new instance of Person. Give it the name <code>Zimba</code> and ssn <code>502075-3392</code>.</p>
+
+<p>Answer with per&#39;s getter for ssn.</p>
+
+
+
+
+
+
+<h3>Exercise 1.2 (2 points)</h3>
+<p>Create a new class named <strong>Address</strong>.  Give the class the instance attributes &#8220;city&#8221;, &#8220;state&#8221; and &#8220;country&#8221;. The values for the attributes should be sent to the constructor as arguments.</p>
+
+<p>Create the magic method <strong>_&#95;str_&#95;</strong>, in Address, it should return <code>"Address: &lt;city&gt; &lt;state&gt; &lt;country&gt;"</code> (replace the &#60;city&#62; with the value of the attribute city&#8230;).</p>
+
+<p>Create a new instance of the class Address. Initiate it with the city <code>Amador</code>, the state <code>Norrland</code> and the country <code>Six Duchies</code> and store it in a variable called <strong>per_address</strong>.</p>
+
+<p>Now, go back and add the instance attribute <strong>address</strong> to your Person class. It&#8217;s value should be sent as argument to constructor, give it a default value of and empty string, <code>""</code>.
+Create a set method for the attribute &#8220;address&#8221;.</p>
+
+<p>Create the magic method <strong>_&#95;str_&#95;</strong> for Person, it should return <code>"Name: &lt;name&gt; SSN: &lt;ssn&gt; Address: &lt;city&gt; &lt;state&gt; &lt;country&gt;"</code> if the person has an address or, <code>"Name: &lt;name&gt; SSN: &lt;ssn&gt;"</code> if its an empty string.</p>
+
+<p>Use Address&#8217; string representation to get address the data.</p>
+
+<p>Use the set method in Person to add the newly create Address object to your <strong>per</strong> object.</p>
+
+<p>Answer with per&#8217;s string representation.</p>
+
+
+
+
+
+
+<h3>Exercise 1.3 (2 points)</h3>
+<p>Create a new class name <strong>Teacher</strong> make it inherit from class &#8220;Person&#8221;. Add the instance attribute &#8220;courses&#8221; and initiate it to an empty list.</p>
+
+<p>Create the method <strong>add_course</strong>, it should take one argument and add it to the course list attribute.</p>
+
+<p>Overload the <code>__str__</code> method from the base class. It should return the same as the original method and add the courses to the end of the string, <code>"Name: &lt;name&gt; SSN: &lt;ssn&gt; Address: &lt;city&gt; &lt;state&gt; &lt;country&gt; Courses: &lt;course&gt;, &lt;course&gt;, ..."</code>. The list of courses should be comma seperated without one at the end. Use <code>super()</code> to access base method.</p>
+
+<p>Create a new instance of the class Teacher. Initiate it with the name <code>FitzChivalry</code> and ssn <code>503233-4011</code>.
+Use the add_course method to add the following courses, <code>ramverk2</code>, <code>htmlphp</code> and <code>linux</code>.</p>
+
+<p>Answer with the Teacher object&#8217;s string representation.</p>
+
+
+
+
+
+
+<h3>Exercise 1.4 (2 points)</h3>
+<p>Create a new class name <strong>Student</strong> make it inherit from class &#8220;Person&#8221;. Add the instance attribute &#8220;courses_grades&#8221; and initiate it to an empty list.</p>
+
+<p>Create the method <strong>add_course_grade</strong>, it should take two arguments, one course and a grade. Create a tuple with the two arguments and add to the attribute &#8220;courses_grades&#8221;.</p>
+
+<p>Create the method <strong>average_grade</strong>. Calculate and return the students average grade. Ignore grades with &#8220;-&#8221; in the calculation.</p>
+
+<p>Create a new instance of the class Student. Initiate it with the name <code>Zimba</code> and ssn <code>619172-0731</code>.
+Use the add_course_grade method to add the following courses, <code>linux</code> with grade <code>5</code>, <code>design</code> with grade <code>-</code> and <code>python</code> with grade <code>3</code>.</p>
+
+<p>Answer with the Student object&#8217;s &#8220;average_grade&#8221; method.</p>
+
+
+
+
+
+
+<h3>Exercise 1.5 (1 points)</h3>
+<p>In Teacher, create the <em>classmethod</em> <strong>from_json</strong> with one argument, <code>filename</code>.
+The <em>filename</em> is a json-file that contains data to create and return a new instance of the class Teacher.
+Use &#8220;teacher.json&#8221; to create a new instance of Teacher.</p>
+
+<p>Tip, import json and use <code>load</code> method.</p>
+
+<p>Answer with the new instance&#8217;s string representation.</p>
+
+
+
+
+
+
+<h3>Exercise 1.6 (1 points)</h3>
+<p>In Teacher, create the method <strong>to_json</strong> that returns a JSON formatted dictionary.
+The dictionary should have the same structure as the file used above.</p>
+
+<p>Answer with a json string that has an indention of 4 spaces.</p>
+
+
+
+
+
+
+
+<hr>
+<code>f9d8662c34738bf3bb8449176d4f322d</code>
+
+</body>
+</html>

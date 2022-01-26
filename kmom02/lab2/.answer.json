@@ -1,0 +1,26 @@
+{
+    "details": "Generated for daap19 at 2022-01-24 21:47:06.",
+    "key": "f9d8662c34738bf3bb8449176d4f322d",
+    "summary": {
+        "questions": 6,
+        "points": 10,
+        "pass": 10.0,
+        "passdistinct": 10.0
+    },
+    "points": {
+        "1.1": 2,
+        "1.2": 2,
+        "1.3": 2,
+        "1.4": 2,
+        "1.5": 1,
+        "1.6": 1
+    },
+    "answers": {
+        "1.1": "502075-3392",
+        "1.2": "Name: Zimba SSN: 502075-3392 Address: Amador Norrland Six Duchies",
+        "1.3": "Name: FitzChivalry SSN: 503233-4011 Courses: ramverk2, htmlphp, linux",
+        "1.4": 4,
+        "1.5": "Name: Steve SSN: 482075-3621 Courses: oopython, oophp",
+        "1.6": "{\n    \"name\": \"Steve\",\n    \"ssn\": \"482075-3621\",\n    \"courses\": [\n        \"oopython\",\n        \"oophp\"\n    ]\n}"
+    }
+}
