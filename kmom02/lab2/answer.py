@@ -13,8 +13,8 @@ Generated 2022-01-24 22:47:06 by dbwebb lab-utility v4.0.0 (2019-03-05).
 https://github.com/dbwebb-se/lab
 """
 
-from dbwebb import Dbwebb
 import json
+from dbwebb import Dbwebb
 
 # pylint: disable=invalid-name
 
@@ -185,7 +185,7 @@ class Teacher(Person):
         if courses is None:  # Fix dangerous-default-value.
             courses = []
 
-        super(Teacher, self).__init__(name, ssn)
+        super().__init__(name, ssn)
         self.courses = courses  # Instance attribute courses
 
     def add_course(self, course):
@@ -208,19 +208,21 @@ class Teacher(Person):
 
         string_of_courses = string_of_courses.strip(", ")
 
-        return super(Teacher, self).to_string() + "Courses: " + string_of_courses
+        return super().to_string() + "Courses: " + string_of_courses
 
-    def from_json(self, filename):
+    @classmethod
+    def from_json(cls, filename):
         """From json method"""
-        # json_file = json.load(filename)
-        # details = json.loads(json_file.read())
+        with open(filename, "r", encoding='utf8') as the_json_file:
+            details = json.load(the_json_file)
 
-        with open(filename, "r") as read_file:
-            details = json.load(read_file)
+        return Teacher(details["name"], details["ssn"], details["courses"])
 
-        print(f"{details}")
+    def to_json(self):
+        """To JSON dictionary"""
+        dictionary = {"name": self.name, "ssn": self._ssn, "courses": self.courses}
 
-        return super(Teacher, self).__init__(details.name, details.ssn, details.courses)
+        return json.dumps(dictionary, indent=4)
 
 
 fitz = Teacher("FitzChivalry", "503233-4011")
@@ -268,7 +270,7 @@ class Student(Person):
         if courses_grades is None:  # Fix dangerous-default-value.
             courses_grades = []
 
-        super(Student, self).__init__(name, ssn, address)
+        super().__init__(name, ssn, address)
         self.courses_grades = courses_grades
         self.total_score = 0
         self.average_from_grades = 0
@@ -324,9 +326,9 @@ dbwebb.assert_equal("1.4", ANSWER, False)
 #
 
 
-new_teacher = Teacher.from_json(Teacher, 'teacher.json')
+new_teacher = Teacher.from_json('teacher.json')
 
-ANSWER = new_teacher
+ANSWER = new_teacher.__str__()
 
 # I will now test your answer - change false to true to get a hint.
 dbwebb.assert_equal("1.5", ANSWER, False)
@@ -344,9 +346,11 @@ dbwebb.assert_equal("1.5", ANSWER, False)
 #
 
 
-ANSWER = "Replace this text with the variable holding the answer."
+
+
+ANSWER = new_teacher.to_json()
 
 # I will now test your answer - change false to true to get a hint.
-dbwebb.assert_equal("1.6", ANSWER, False)
+dbwebb.assert_equal("1.6", ANSWER, True)
 
 dbwebb.exit_with_summary()
