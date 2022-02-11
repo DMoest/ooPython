@@ -80,3 +80,10 @@ class TestDie(unittest.TestCase):
         Test die roll for random value with random seed
         """
         self.assertEqual(self.die.roll(), 4)
+
+    def test_equal_dice(self):
+        """
+        Test die roll for random value with random seed
+        """
+        new_dice = Die(5)
+        self.assertEqual(self.die.__eq__(new_dice), True)

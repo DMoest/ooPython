@@ -30,9 +30,6 @@ class TestDie(unittest.TestCase):
         Test the initial values on a new object instance of die.
         """
         self.assertEqual(self.die.get_value(), 4)
-        self.assertNotEqual(self.die.get_value(), "")
-        self.assertNotEqual(self.die.get_value(), [])
-        self.assertNotEqual(self.die.get_value(), ())
         self.assertEqual(self.die.MIN_ROLL_VALUE, 1)
         self.assertEqual(self.die.MAX_ROLL_VALUE, 6)
 
@@ -45,25 +42,8 @@ class TestDie(unittest.TestCase):
         Test types on object instance attributes.
         """
         self.assertEqual(type(self.die.get_value()), int)
-        self.assertNotEqual(type(self.die.get_value()), str)
-        self.assertNotEqual(type(self.die.get_value()), bool)
-        self.assertNotEqual(type(self.die.get_value()), list)
-        self.assertNotEqual(type(self.die.get_value()), dict)
-        self.assertNotEqual(type(self.die.get_value()), tuple)
-
         self.assertEqual(type(self.die.__str__()), str)
-        self.assertNotEqual(type(self.die.__str__()), int)
-        self.assertNotEqual(type(self.die.__str__()), bool)
-        self.assertNotEqual(type(self.die.__str__()), list)
-        self.assertNotEqual(type(self.die.__str__()), dict)
-        self.assertNotEqual(type(self.die.__str__()), tuple)
-
         self.assertEqual(type(self.die.get_name()), str)
-        self.assertNotEqual(type(self.die.get_name()), int)
-        self.assertNotEqual(type(self.die.get_name()), bool)
-        self.assertNotEqual(type(self.die.get_name()), list)
-        self.assertNotEqual(type(self.die.get_name()), dict)
-        self.assertNotEqual(type(self.die.get_name()), tuple)
 
     def test_die_object_for_instance_of_class(self):
         """
@@ -76,14 +56,16 @@ class TestDie(unittest.TestCase):
         Test die roll value type
         """
         self.assertEqual(type(self.die.roll()), int)
-        self.assertNotEqual(type(self.die.roll()), str)
-        self.assertNotEqual(type(self.die.roll()), bool)
-        self.assertNotEqual(type(self.die.roll()), list)
-        self.assertNotEqual(type(self.die.roll()), dict)
-        self.assertNotEqual(type(self.die.roll()), tuple)
 
     def test_random_dice_roll(self):
         """
         Test die roll for random value with random seed
         """
         self.assertEqual(self.die.roll(), 6)
+
+    def test_equal_dice(self):
+        """
+        Test die roll for random value with random seed
+        """
+        new_dice = Die(4)
+        self.assertEqual(self.die.__eq__(new_dice), True)

@@ -34,6 +34,12 @@ class Die:
         """
         return str(self._value)
 
+    def __eq__(self, dice):
+        """Getter method to check and return boolean value if dice or dice value checks."""
+        if isinstance(dice, int):
+            return bool(self._value == dice)
+        return bool(self._value == dice.get_value())
+
     def roll(self):
         """
         Setter method for dice value from roll action.

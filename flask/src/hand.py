@@ -43,17 +43,19 @@ class Hand:
         Setter method to roll dices in hand
         """
         hand_values = []
-
         for index, dice in enumerate(self.dice):
-            if indexes is None or index in indexes:
+            if indexes is None:
                 dice.roll()
                 hand_values.append(dice.get_value())
-            elif indexes is not None and index not in indexes:
+            elif index in indexes:
+                dice.roll()
+                hand_values.append(dice.get_value())
+            elif index not in indexes:
                 hand_values.append(dice.get_value())
 
         return hand_values
 
-    def get_values(self):
+    def to_list(self):
         """
         Getter method for list of values of dice in hand.
         """

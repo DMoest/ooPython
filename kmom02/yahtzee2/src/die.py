@@ -36,7 +36,7 @@ class Die:
 
     def __eq__(self, dice):
         """Getter method to check and return boolean value if dice or dice value checks."""
-        if dice is int:
+        if isinstance(dice, int):
             return bool(self.get_value() == dice)
         return bool(self.get_value() == dice.get_value())
 

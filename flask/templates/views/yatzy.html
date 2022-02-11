@@ -2,28 +2,71 @@
 
 {% block content %}
 
-    <div class="bg-white text-secondary-10">
+    <div class="w-full bg-white text-secondary-10 flex flex-row justify-between gap-8">
 
-        <div>
-            <h2 class="w-auto mx-auto p-4 text-3xl text-center">Dice hand</h2>
+        <div class="w-full">
+            {% if session.get("last_hand") %}
+                {% set last_hand = session.get("last_hand") %}
+                {% set images=['one', 'two', 'three', 'four', 'five', 'six'] %}
 
-            <ul class="flex flex-col md:flex-row justify-between gap-2">
-                {% for die in hand.get_dice() %}
+                <h2 class="mx-auto p-4 text-3xl text-center">Last Dice hand</h2>
+
+                <ul class="flex flex-col md:flex-row justify-between gap-2">
+                {% for value in last_hand %}
                     <li class="w-1/5 p-4 inline-block">
-                        <img src="static/img/dice/{{ die.get_name() }}.png"
-                             alt="Dice image for value {{ die.get_name() }}."
+                        <img src="static/img/dice/{{ images[value - 1] }}.png"
+                             alt="Dice image for value {{ value - 1 }}."
                              class="m-auto w-3/4 md:w-1/2">
-                        <p class="p-4 text-center text-xl text-secondary-10 capitalize">{{ die.get_name() }}</p>
+                        <p class="p-4 text-center text-xl text-secondary-10 capitalize">{{ images[value - 1] }}</p>
                     </li>
                 {% endfor %}
-            </ul>
+                </ul>
+            {% endif %}
 
-            <p class="p-4 block">Hand total value: {{ hand.get_total_value() }}</p>
+            <h2 class="mx-auto p-4 text-3xl text-center">Dice hand</h2>
 
-            <a href="/yatzy"
-               class="w-full mx-auto mt-4 p-4 rounded block md:w-1/2 md:mt-12 text-2xl text-center uppercase
-               text-primary-10 bg-quaternary-10 shadow-lg hover:bg-quinary-10 font-button">Roll them dices!</a>
+            <form id="dice_form" action="{{ url_for('yatzy') }}" method="POST">
+                <ul class="flex flex-col md:flex-row justify-between gap-2">
+                    {% for die in hand.get_dice() %}
+                        <li class="w-1/5 p-4 inline-block">
+                            <img src="static/img/dice/{{ die.get_name() }}.png"
+                                 alt="Dice image for value {{ die.get_name() }}."
+                                 class="m-auto w-3/4 md:w-1/2">
+                            <p class="p-4 text-center text-xl text-secondary-10 capitalize">{{ die.get_name() }}</p>
+                            <input type="checkbox"
+                                   name="select_to_keep"
+                                   value="{{ loop.index - 1 }}"
+                                   class="block m-auto text-center" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </form>
+
+            <p class="px-8 pt-4 italic text-small text-center">If you like to roll specific dice, check the box for that dice. In case of none selected all dice in hand will be rolled.</p>
+
+            <div class="flex flex-row justify-around gap-4">
+                <button form="dice_form"
+                        type="submit"
+                        class="w-full mx-auto mt-4 p-4 rounded inline-block md:w-1/2 md:mt-12
+                        text-2xl text-center uppercase text-primary-10 bg-quaternary-10 shadow-lg
+                        hover:bg-quinary-10 font-button">Roll them dices!</button>
+
+                <button form="reset_game"
+                        type="submit"
+                        class="w-full mx-auto mt-4 p-4 rounded inline-block md:w-1/2 md:mt-12
+                        text-2xl text-center uppercase text-primary-10 bg-quaternary-10 shadow-lg
+                        hover:bg-red-400 font-button">Reset Game</button>
+            </div>
+
+            <form id="reset_game"
+                  action="{{ url_for('reset') }}"
+                  method="POST"
+                  class="hidden">
+            </form>
         </div>
+
+        {% include "components/scoreboard.html" %}
+
     </div>
 
 {% endblock content %}
