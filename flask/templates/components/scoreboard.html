@@ -14,8 +14,6 @@
             <p class="w-1/4 text-center">Points</p>
         </div>
 
-        {% set scoreboard = session.get('scoreboard') %}
-
         {% for rule in rules %}
             <div class="w-full flex flex-row justify-between gap-1 text-sm px-4 py-1 bg-primary-10 rounded shadow-lg">
                 {% if scoreboard[rule.name] %}
@@ -48,10 +46,7 @@
 
         <button form="scoreboard"
             type="submit"
-            class="w-full mx-auto mt-4 p-4 rounded inline-block md:w-1/2 md:mt-12
-            text-2xl text-center uppercase text-primary-10 bg-quaternary-10 shadow-lg
-            hover:bg-quinary-10 font-button">Select score</button>
+            class="w-full mt-4 p-4 rounded block text-2xl text-center uppercase text-primary-10
+            bg-quaternary-10 shadow-lg hover:bg-green-400 font-button">Select score</button>
     </form>
-
-
 </div>

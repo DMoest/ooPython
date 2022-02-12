@@ -185,9 +185,13 @@ class SmallStraight(Rule):
         Getter method for points in hand if three of a kind.
         """
         dice_values = hand.to_list()
-        if all(x in dice_values for x in range(1, 4)) or \
-                all(x in dice_values for x in range(2, 5)) or \
-                all(x in dice_values for x in range(3, 6)):
+        dice_values.sort()
+
+        print("Check this GENERATOR: ", all(x in range(1, 5) for x in dice_values))
+
+        if all(x in dice_values for x in range(1, 5)) or \
+                all(x in dice_values for x in range(2, 6)) or \
+                all(x in dice_values for x in range(3, 7)) is True:
             return 30
         return 0
 
@@ -208,8 +212,10 @@ class LargeStraight(Rule):
         Getter method for points in hand if three of a kind.
         """
         dice_values = hand.to_list()
-        if all(x in dice_values for x in range(1, 5)) or \
-                all(x in dice_values for x in range(2, 6)):
+        dice_values.sort()
+
+        if all(x in dice_values for x in range(1, 6)) or \
+                all(x in dice_values for x in range(2, 7)):
             return 40
         return 0
 
@@ -231,8 +237,12 @@ class FullHouse(Rule):
         """
         dice_values = hand.to_list()
         dice_values.sort()
-        condition_1 = dice_values[0] == dice_values[1] and dice_values[2] == dice_values[4]
-        condition_2 = dice_values[0] == dice_values[2] and dice_values[3] == dice_values[4]
+        condition_1 = dice_values[0] == dice_values[1] and \
+                      dice_values[2] == dice_values[4] and \
+                      dice_values[0:1] != dice_values[2:3]
+        condition_2 = dice_values[0] == dice_values[2] and \
+                      dice_values[3] == dice_values[4] and \
+                      dice_values[0:1] != dice_values[3:4]
 
         if condition_1 or condition_2:
             return 25

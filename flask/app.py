@@ -93,22 +93,24 @@ def yatzy():
     """
     Yatzy route function.
     """
-    hand = handler.hand
-    roll_these_dice = []
+    roll_dice_index = []
     session["last_hand"] = session.get("dice_hand")
 
     for i in request.form.getlist('select_to_keep'):
-        roll_these_dice.append(int(i))
+        roll_dice_index.append(int(i))
 
-    if len(roll_these_dice) > 0:
-        session["dice_hand"] = handler.roll(roll_these_dice)
+    if len(roll_dice_index) > 0:
+        session["dice_hand"] = handler.roll(roll_dice_index)
     else:
         session["dice_hand"] = handler.roll()
 
     return render_template("views/yatzy.html",
                            title="Yatzy",
                            pages=routes,
-                           hand=hand,
+                           dice_hand=session.get('dice_hand', []),
+                           last_hand=session.get('last_hand', []),
+                           scoreboard=session.get('scoreboard', []),
+                           hand=handler.get_hand(),
                            rules=rules)
 
 
@@ -129,7 +131,6 @@ def reset():
     Aboute route
     """
     session.clear()
-    session['scoreboard'] = {}
 
     return redirect(url_for('yatzy'))
 
