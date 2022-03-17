@@ -7,16 +7,18 @@
             <h2 class="p-4 text-3xl">Scoreboard</h2>
         </div>
 
-        <div class="flex flex-row justify-between gap-1 text-sm">
+        <div class="flex flex-row justify-between gap-1 text-sm px-4 py-2 bg-primary-10 rounded shadow-lg">
             <p class="w-1/4 text-center">Select</p>
             <p class="w-1/4 text-center">Rule</p>
             <p class="w-1/4 text-center">Worth</p>
             <p class="w-1/4 text-center">Points</p>
         </div>
 
+
+
         {% for rule in rules %}
             <div class="w-full flex flex-row justify-between gap-1 text-sm px-4 py-1 bg-primary-10 rounded shadow-lg">
-                {% if scoreboard[rule.name] %}
+                {% if scoreboard[rule.name] != -1 %}
                     <p class="w-1/6 inline-bock text-center m-auto">&checkmark;</p>
                 {% else %}
                     <input type="radio"
@@ -37,12 +39,17 @@
                 </label>
 
                 {# Worth #}
-                <p class="w-1/6"> {% if scoreboard[rule.name] %}  {% elif rule.points(hand) > 0 %} {{ rule.points(hand) }} {% else %} - {% endif %}</p>
+                <p class="w-1/6"> {% if scoreboard[rule.name] == -1 %} {{ rule.points(hand) }} {% else %}  {% endif %}</p>
 
                 {# Score #}
-                <p class="w-1/6"> {% if scoreboard[rule.name] %} {{ scoreboard[rule.name] }} {% else %} - {% endif %} </p>
+                <p class="w-1/6"> {% if scoreboard[rule.name] != -1 %} {{ scoreboard[rule.name] }} {% else %} - {% endif %} </p>
             </div>
         {% endfor %}
+
+        <div class="w-full flex flex-row justify-around gap-1 text-sm px-4 py-4 bg-primary-10 rounded shadow-lg">
+            <p>Total score: </p>
+            <p>{{ total_score }} points </p>
+        </div>
 
         <button form="scoreboard"
             type="submit"

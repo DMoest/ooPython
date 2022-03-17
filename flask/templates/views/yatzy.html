@@ -3,46 +3,23 @@
 {% block content %}
 
     <div class="w-full bg-white text-secondary-10 flex flex-row justify-between gap-8">
-
         <div class="w-full">
-            {% if last_hand %}
-                {% set images=['one', 'two', 'three', 'four', 'five', 'six'] %}
 
-                <h2 class="mx-auto p-4 text-3xl text-center">Last Dice hand</h2>
+            {% if finished %}
+                <div class="w-full p-4 bg-green-300 rounded">
+                    <h2 class="mx-auto p-4 text-3xl text-center">Game Over</h2>
+                    <p class="py-2 text-center">You have collected {{ total_score }} points. </p>
+                    <p class="pb-4 text-center text-sm italic">If you like to play again, press the restart game button below. </p>
+                </div>
+            {% elif finished == False %}
 
-                <ul class="flex flex-col md:flex-row justify-between gap-2">
-                    {% for value in last_hand %}
-                        <li class="w-1/5 p-4 inline-block">
-                            <img src="static/img/dice/{{ images[value - 1] }}.png"
-                                 alt="Dice image for value {{ value - 1 }}."
-                                 class="m-auto w-3/4 md:w-1/2">
-                            <p class="p-4 text-center text-xl text-secondary-10 capitalize">
-                                {{ images[value - 1] }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            {% include "components/dice_hand.html" %}
 
-            <h2 class="mx-auto p-4 text-3xl text-center">Dice hand</h2>
+            <p class="px-4 text-sm text-center">Dice rolls: {{ counter }}</p>
 
-            <form id="dice_form" action="{{ url_for('yatzy') }}" method="POST">
-                <ul class="flex flex-col md:flex-row justify-between gap-2">
-                    {% for die in hand.get_dice() %}
-                        <li class="w-1/5 p-4 inline-block">
-                            <img src="static/img/dice/{{ die.get_name() }}.png"
-                                 alt="Dice image for value {{ die.get_name() }}."
-                                 class="m-auto w-3/4 md:w-1/2">
-                            <p class="p-4 text-center text-xl text-secondary-10 capitalize">{{ die.get_name() }}</p>
-                            <input type="checkbox"
-                                   name="select_to_keep"
-                                   value="{{ loop.index - 1 }}"
-                                   class="block m-auto text-center" />
-                        </li>
-                    {% endfor %}
-                </ul>
-            </form>
-
-            <p class="px-8 pt-4 italic text-small text-center">If you like to roll specific dice, check the box for that dice. In case of none selected all dice in hand will be rolled.</p>
+                {% if counter < 3 %}
+                    <p class="px-8 pt-4 italic text-small text-center">If you like to roll specific dice, check the box for that dice. In case of none selected all dice in hand will be rolled.</p>
+                {% endif %}
 
             <div class="flex flex-row justify-around gap-4 px-10 m-auto">
                 <button form="dice_form"
@@ -50,6 +27,7 @@
                         class="w-full mx-auto mt-4 p-4 rounded inline-block md:w-1/2 md:mt-12
                         text-2xl text-center uppercase text-primary-10 bg-quaternary-10 shadow-lg
                         hover:bg-quinary-10 font-button">Roll them dices!</button>
+            {% endif %}
 
                 <button form="reset_game"
                         type="submit"

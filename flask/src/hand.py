@@ -44,12 +44,10 @@ class Hand:
         """
         hand_values = []
         for index, dice in enumerate(self.dice):
-            if indexes is None:
-                dice.roll()
-                hand_values.append(dice.get_value())
+            if indexes is None or len(indexes) == 0:
+                hand_values.append(dice.roll())
             elif index in indexes:
-                dice.roll()
-                hand_values.append(dice.get_value())
+                hand_values.append(dice.roll())
             elif index not in indexes:
                 hand_values.append(dice.get_value())
 

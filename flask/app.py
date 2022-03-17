@@ -3,30 +3,11 @@
 """
 Main application mobule App.py
 """
-
-# Module imports
 import os
 import re
+
 from flask import Flask, render_template, session, request, redirect, url_for
-
 from handler import Handler
-from src.rules import (
-    Ones,
-    Twos,
-    Threes,
-    Fours,
-    Fives,
-    Sixes,
-    ThreeOfAKind,
-    FourOfAKind,
-    FullHouse,
-    SmallStraight,
-    LargeStraight,
-    Chance,
-    Yahtzee
-)
-
-# from flask_assets import Environment, Bundle
 
 # Config Application & Assets
 app = Flask(__name__)
@@ -36,43 +17,11 @@ handler = Handler()
 app.secret_key = re.sub(r"[^a-z\d]", "", os.path.realpath(__file__))
 # print("Session Key: ", re.sub(r"[^a-z\d]", "", os.path.realpath(__file__)))
 
-# assets = Environment(app)
-# from router import routes
-
-# Bundle Flask Assets
-# style = Bundle('styles/**/*.css', 'styles/**/*.scss', output='dist/main.css', filters='postcss')
-# js = Bundle("js/**/*.js", "./**/*.js", output="dist/bundle.js")
-
-# Register Bundled Assets for useage
-# assets.register('style', style)
-# assets.register("js", js)
-
-# Build Flask Assets
-# style.build()
-# js.build()
-
-
 # Routes
 routes = [
     {'name': 'Index', 'route': 'index'},
     {'name': 'Yatzy', 'route': 'yatzy'},
     {'name': 'About', 'route': 'about'}
-]
-
-rules = [
-    Ones(),
-    Twos(),
-    Threes(),
-    Fours(),
-    Fives(),
-    Sixes(),
-    ThreeOfAKind(),
-    FourOfAKind(),
-    FullHouse(),
-    SmallStraight(),
-    LargeStraight(),
-    Chance(),
-    Yahtzee()
 ]
 
 
@@ -93,25 +42,33 @@ def yatzy():
     """
     Yatzy route function.
     """
-    roll_dice_index = []
-    session["last_hand"] = session.get("dice_hand")
+    # Check for all needed sessions to exist or set them up
+    if handler.check_sessions() is False:
+        handler.setup_sessions(handler)
 
-    for i in request.form.getlist('select_to_keep'):
-        roll_dice_index.append(int(i))
+    counter = handler.read_session("counter")
 
-    if len(roll_dice_index) > 0:
-        session["dice_hand"] = handler.roll(roll_dice_index)
-    else:
-        session["dice_hand"] = handler.roll()
+    dice_indexes = []
+    if request.method == "POST" and counter < 3:
+        for index in request.form.getlist('select_to_roll'):
+            dice_indexes.append(int(index))
+
+        handler.write_session("roll_these_dice", dice_indexes)
+        # print(f"Dice index from session: {handler.read_session('roll_these_dice')}")
+
+        # Roll them dices
+        handler.roll(handler.read_session('roll_these_dice'))
 
     return render_template("views/yatzy.html",
                            title="Yatzy",
                            pages=routes,
-                           dice_hand=session.get('dice_hand', []),
-                           last_hand=session.get('last_hand', []),
-                           scoreboard=session.get('scoreboard', []),
                            hand=handler.get_hand(),
-                           rules=rules)
+                           rules=handler.get_rules(),
+                           counter=handler.get_counter(),
+                           dice_hand=handler.get_dice_hand(),
+                           scoreboard=handler.get_scoreboard(),
+                           total_score=handler.get_total_score(),
+                           finished=handler.is_finished())
 
 
 @app.route("/select_score", methods=["GET", "POST"])
@@ -120,10 +77,10 @@ def select_score():
     Select score route
     """
     if request.method == "POST":
-        # handler.read_session(session)
-        handler.add_to_scoreboard(request.form)
-
+        scores = handler.add_to_scoreboard(request.form)
+        handler.write_session('scoreboard', scores)
     return redirect(url_for('yatzy'))
+
 
 @app.route("/reset", methods=["POST"])
 def reset():
@@ -131,6 +88,7 @@ def reset():
     Aboute route
     """
     session.clear()
+    handler.reset_game()
 
     return redirect(url_for('yatzy'))
 

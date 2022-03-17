@@ -18,7 +18,6 @@ class Rule(ABC):
         Points method for class.
         """
 
-
 class SameValueRule(Rule):
     """
     SameValueRule class.
@@ -42,7 +41,6 @@ class SameValueRule(Rule):
                 points += self.value
 
         return points
-
 
 class Ones(SameValueRule):
     """
@@ -186,8 +184,6 @@ class SmallStraight(Rule):
         """
         dice_values = hand.to_list()
         dice_values.sort()
-
-        print("Check this GENERATOR: ", all(x in range(1, 5) for x in dice_values))
 
         if all(x in dice_values for x in range(1, 5)) or \
                 all(x in dice_values for x in range(2, 6)) or \
